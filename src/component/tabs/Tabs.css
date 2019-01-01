@@ -8,4 +8,10 @@
     font-size: 30px;
     background: none;
     border: white;
+    outline: none;
 }
+
+.ChangeColor{
+    color: red
+}
+

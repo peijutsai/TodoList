@@ -1,0 +1,17 @@
+.EditItem {
+    margin-top: 30px;
+}
+
+.EditItem > span {
+    margin-right: 10px;
+    /* font-size: 30px; */
+}
+
+.EditItem > span > input {
+    font-size: 20px;
+}
+
+.EditItem > span > button {
+    font-size: 20px;
+    background: none;
+}

@@ -8,7 +8,9 @@ class MainContent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            list: this.props.data
+            list: this.props.data,
+            page: 'All',
+            editModeId: -1
         }
     }
 
@@ -26,12 +28,11 @@ class MainContent extends Component {
                 this.setState({
                     list: this.props.data
                 })
-
                 return
             }
 
             filteredlist = this.props.data.filter(ele => {
-                return ele['text'] === event.target.value
+                return ele['text'].includes(event.target.value)
             })
 
             this.setState({
@@ -40,17 +41,75 @@ class MainContent extends Component {
         }
     }
 
+    allPageHandler = () => {
+        this.setState({
+            list: this.props.data,
+            page: 'All'
+        })
+    }
 
+    processingPageHandler = () => {
+        let processingPageContent = []
+
+        processingPageContent = this.props.data.filter(ele => {
+            return ele['status'] === 'processing'
+        })
+
+        this.setState({
+            list: processingPageContent,
+            page: 'Processing'
+        })
+
+    }
+
+    donePageHandler = () => {
+        let donePageContent = []
+
+        donePageContent = this.props.data.filter(ele => {
+            return ele['status'] === 'done'
+        })
+
+        console.log(donePageContent)
+
+        this.setState({
+            list: donePageContent,
+            page: 'Done'
+        })
+    }
+
+    editModeHandler = (id) => {
+        this.setState({
+            editModeId: id
+        })
+    }
+
+    cancelHandler = (id) => {
+        this.setState({
+            editModeId: -1
+        }) 
+    }
 
     render() {
         return (
             <div>
                 <Search searchHandler={this.searchHandler} />
+
                 <List
                     data={this.state.list}
                     orderChangedHandler={this.props.orderChangedHandler}
-                    resortOrderHandler={this.props.resortOrderHandler} />
-                <Tabs />
+                    resortOrderHandler={this.props.resortOrderHandler}
+                    toggleToDone={this.props.toggleToDone}
+                    deleteHandler={this.props.deleteHandler}
+                    editModeHandler={this.editModeHandler}
+                    editModeId={this.state.editModeId} 
+                    cancelHandler={this.cancelHandler}
+                    saveHandler={this.saveHandler}/>
+
+                <Tabs
+                    currentPage={this.state.page}
+                    allPageHandler={this.allPageHandler}
+                    processingPageHandler={this.processingPageHandler}
+                    donePageHandler={this.donePageHandler} />
             </div>
         )
     }

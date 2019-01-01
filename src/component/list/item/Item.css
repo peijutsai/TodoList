@@ -15,3 +15,8 @@
     font-size: 20px;
     background: none;
 }
+
+.AddLine {
+    text-decoration: line-through;
+    color: grey;
+}

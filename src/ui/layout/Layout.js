@@ -35,8 +35,6 @@ class Layout extends Component {
             }
         })
 
-        // console.log(newList)
-
         this.setState({
             data: newList
         })
@@ -53,15 +51,42 @@ class Layout extends Component {
         })
     }
 
+    toggleToDone = (id) => {
+        let doneData = this.state.data
+
+        if (doneData[id]['status'] !== 'done') {
+            doneData[id]['status'] = 'done'
+        
+        } else {
+            doneData[id]['status'] = 'processing'
+        }
+
+        this.setState({
+            data: doneData
+        })
+    }
+
+    deleteHandler= (id) => {
+        let content = this.state.data
+        content.pop(id)
+
+        this.setState({
+            data: content
+        }) 
+    }
+
     render() {
         let pageContent = <NoContent />
 
         if (this.state.data.length > 0) {
+            
             pageContent =
                 <MainContent
                     data={this.state.data}
                     orderChangedHandler={this.orderChangedHandler}
-                    resortOrderHandler={this.resortOrderHandler} />
+                    resortOrderHandler={this.resortOrderHandler}
+                    toggleToDone={this.toggleToDone} 
+                    deleteHandler={this.deleteHandler}/>
         }
 
         return (
