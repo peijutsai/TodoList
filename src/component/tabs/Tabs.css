@@ -1,0 +1,11 @@
+.Tabs {
+    display: flex;
+    margin: 50px 50px;
+}
+
+.Tabs button {
+    margin-right: 10px;
+    font-size: 30px;
+    background: none;
+    border: white;
+}
