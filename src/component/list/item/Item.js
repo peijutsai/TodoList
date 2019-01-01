@@ -6,13 +6,17 @@ const Item = (props) => {
     return (
         <div className='Item'>
             <span>
-                <input type='text' defaultValue={props.data['order']} />
+                <input
+                    type='text'
+                    value={props.data['order']}
+                    onBlur={props.resortOrderHandler}
+                    onChange={(event) => props.orderChangedHandler(event, props.id)} />
             </span>
-            
+
             <span>
                 {props.data['text']}
             </span>
-            
+
             <span>
                 <button>Edit</button>
                 <button>Delete</button>

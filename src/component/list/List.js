@@ -6,7 +6,13 @@ const List = (props) => {
     let list = []
 
     list = props.data.map((ele, i) => {
-        return <li key={i} ><Item data={ele} /></li>
+        return (
+            <li key={i}>
+                <Item data={ele} id={i}
+                    orderChangedHandler={props.orderChangedHandler}
+                    resortOrderHandler={props.resortOrderHandler} />
+            </li>
+        )
     })
 
     return (
