@@ -3,10 +3,10 @@ import React from 'react'
 import './Item.css'
 
 const Item = (props) => {
-    let ifAddLine = ''
+    let classIsDone = ''
 
-    if(props.data['status'] === 'done') {
-        ifAddLine= 'AddLine'
+    if (props.data['status'] === 'Done') {
+        classIsDone = 'AddLine'
     }
 
     return (
@@ -15,19 +15,22 @@ const Item = (props) => {
                 <input
                     type='text'
                     value={props.data['order']}
-                    onBlur={props.resortOrderHandler}
-                    onChange={(event) => props.orderChangedHandler(event, props.id)} />
+                    onChange={(event) => props.changeOrderHandler(event, props.index)}
+                    onBlur={props.sortHandler} />
             </span>
 
             <span
-                className={ifAddLine}
-                onClick={() => props.toggleToDone(props.id)}>
+                className={classIsDone}
+                onClick={() => {props.toggleDoneStatusHandler(props.index)}}
+                >
+
                 {props.data['text']}
+
             </span>
 
             <span>
-                <button onClick={() => props.editModeHandler(props.id)}>Edit</button>
-                <button onClick={() => props.deleteHandler(props.id)}>Delete</button>
+                <button onClick={() => {props.enterEditModeHandler(props.index)}}>Edit</button>
+                <button onClick={() => {props.deleteItemHandler(props.index)}}>Delete</button>
             </span>
         </div>
     )

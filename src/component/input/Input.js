@@ -8,7 +8,7 @@ const Input = (props) => {
             type='text'
             placeholder='Add New Todo Item'
             className='Input' 
-            onKeyPress={(event) => {props.keyPressHandler(event)}}/>
+            onKeyPress={props.addItemHandler}/>
     )
 }
 

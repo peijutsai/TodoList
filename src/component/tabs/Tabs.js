@@ -7,10 +7,10 @@ const Tabs = (props) => {
     let processing = ''
     let done = ''
 
-    if(props.currentPage === 'All') {
+    if(props.page === 'All') {
         all = 'ChangeColor'
     
-    } else if (props.currentPage === 'Processing') {
+    } else if (props.page === 'Processing') {
         processing = 'ChangeColor'
 
     } else {
@@ -20,9 +20,9 @@ const Tabs = (props) => {
 
     return (
         <div className='Tabs'>
-            <button onClick={() => props.allPageHandler()} className={all}>All</button>
-            <button onClick={() => props.processingPageHandler()} className={processing}>Processing</button>
-            <button onClick={() => props.donePageHandler()} className={done}>Done</button>
+            <button onClick={() => props.changePageHandler("All")} className={all}>All</button>
+            <button onClick={() => props.changePageHandler("Processing")} className={processing}>Processing</button>
+            <button onClick={() => props.changePageHandler("Done")} className={done}>Done</button>
         </div>
     )
 }

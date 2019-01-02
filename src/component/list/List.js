@@ -4,24 +4,29 @@ import Item from '../list/item/Item'
 import EditItem from './item/edititem/EditItem';
 
 const List = (props) => {
-    let list = []
+    let itemViews = []
 
-    list = props.data.map((ele, i) => {
+    itemViews = props.toDoList.map((data, i) => {
 
-        let item = <Item data={ele} id={i}
-            orderChangedHandler={props.orderChangedHandler}
-            resortOrderHandler={props.resortOrderHandler}
-            toggleToDone={props.toggleToDone}
-            editModeHandler={props.editModeHandler}
-            deleteHandler={props.deleteHandler} />
+        let item = <Item
+            data={data} index={i}
+            changeOrderHandler={props.changeOrderHandler}
+            sortHandler={props.sortHandler}
+            toggleDoneStatusHandler={props.toggleDoneStatusHandler}
+            deleteItemHandler={props.deleteItemHandler}
+            enterEditModeHandler={props.enterEditModeHandler} />
 
-        if (i === props.editModeId) {
-            item = <EditItem data={ele} id={i}
-            cancelHandler={props.cancelHandler}
-            saveHandler={props.saveHandler}
-            deleteHandler={props.deleteHandler}/>
+        if (i === props.editModeIndex) {
+            item = <EditItem
+                tmpData={props.tmpData} index={i}
+                deleteItemHandler={props.deleteItemHandler}
+                exitEditModeHandler={props.exitEditModeHandler}
+                changeTmpOrderHandler={props.changeTmpOrderHandler}
+                changeTmpTextHandler={props.changeTmpTextHandler}
+                saveItemHandler={props.saveItemHandler}
+            />
         }
-        
+
         return (
             <li key={i}>{item}</li>
         )
@@ -30,7 +35,7 @@ const List = (props) => {
     return (
         <div>
             <ul>
-                {list}
+                {itemViews}
             </ul>
         </div>
     )

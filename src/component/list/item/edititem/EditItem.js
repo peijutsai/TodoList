@@ -9,19 +9,23 @@ const EditItem = (props) => {
             <span>
                 <input
                     type='text'
-                    value={props.data['order']}/>
+                    value={props.tmpData['order']}
+                    onChange={props.changeTmpOrderHandler}
+                    />
             </span>
 
             <span>
                 <input
                     type='text'
-                    value={props.data['text']}/>
+                    value={props.tmpData['text']}
+                    onChange={props.changeTmpTextHandler}
+                    />
             </span>
 
             <span>
-                <button onClick={() => props.cancelHandler(props.id)}>Cancel</button>
-                <button onClick={() => props.saveHandler(props.id)}>Save</button>
-                <button onClick={() => props.deleteHandler(props.id)}>Delete</button>
+                <button onClick={props.exitEditModeHandler}>Cancel</button>
+                <button onClick={() => {props.saveItemHandler(props.index)}}>Save</button>
+                <button onClick={() => {props.deleteItemHandler(props.index)}}>Delete</button>
             </span>
         </div>
 
